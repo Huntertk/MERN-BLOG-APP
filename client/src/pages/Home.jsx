@@ -3,7 +3,7 @@ import { Button } from "flowbite-react";
 
 const Home = () => {
   return (
-    <Button>Click me</Button>
+    <h1>Click me</h1>
   )
 }
 
