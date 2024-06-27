@@ -1,12 +1,13 @@
 import User from '../models/userModel.js';
 import bcrypt from 'bcryptjs';
+import { AppError } from '../utils/error.js';
 
-export const signup = async (req, res) => {
+export const signup = async (req, res, next) => {
     console.log(req.body);
     const {username, email, password} = req.body;
 
     if(!username || !email || !password || username === '' || email === '' || password === ''){
-        return res.status(400).json({message:"All fields are required"})
+        return next(new AppError(400,"All fields are required!!!"))
     }
     try {
         const hashPassword = await bcrypt.hash(password, 10);
@@ -20,6 +21,6 @@ export const signup = async (req, res) => {
         await newUser.save();
         res.status(201).json({messgae:"Signup Successful", newUser})
     } catch (error) {
-        res.status(500).json({messgae:error.message})
+        next(error)
     }
 }

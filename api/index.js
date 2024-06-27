@@ -20,6 +20,18 @@ app.use('/api/user', userRouter)
 app.use('/api/auth', authRouter)
 
 
+//global error handler
+app.use((err, req, res, next) => {
+    console.log(err);
+    const statusCode = err.statusCode || 500;
+    const message = err.message || "Internal Server Error";
+    res.status(statusCode).json({
+        success:false,
+        statusCode,
+        message,
+    })
+})
+
 //server listining
 app.listen(3000,() => {
     console.log(`Server is running on port 3000`);
