@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config';
 import userRouter from './routes/userRoute.js'
+import authRouter from './routes/authRoute.js'
 
 mongoose.connect(process.env.MONGO)
     .then(() => console.log('db is connected to application'))
@@ -10,10 +11,13 @@ mongoose.connect(process.env.MONGO)
 //Express App initialization
 const app = express();
 
+//Middlewares
+app.use(express.json());
 
 
 //Routes
 app.use('/api/user', userRouter)
+app.use('/api/auth', authRouter)
 
 
 //server listining
