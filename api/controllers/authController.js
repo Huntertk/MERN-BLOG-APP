@@ -3,7 +3,6 @@ import bcrypt from 'bcryptjs';
 import { AppError } from '../utils/error.js';
 
 export const signup = async (req, res, next) => {
-    console.log(req.body);
     const {username, email, password} = req.body;
 
     if(!username || !email || !password || username === '' || email === '' || password === ''){
