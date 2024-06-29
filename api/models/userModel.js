@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    profilePicture:{
+        type:String,
+        default:"https://p7.hiclipart.com/preview/722/101/213/computer-icons-user-profile-circle-abstract.jpg"
+    }
 
 }, {timestamps:true})
 
