@@ -50,7 +50,7 @@ export const signin = async (req, res, next) => {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             maxAge: 1000*60*60*24*1
-        }).json({messgae:"Sign in Successfully", user:rest})
+        }).send(rest)
 
     } catch (error) {
         next(error)
