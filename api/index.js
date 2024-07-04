@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import 'dotenv/config';
 import userRouter from './routes/userRoute.js'
 import authRouter from './routes/authRoute.js'
+import cookieParser from 'cookie-parser';
 
 mongoose.connect(process.env.MONGO)
     .then(() => console.log('db is connected to application'))
@@ -13,7 +14,7 @@ const app = express();
 
 //Middlewares
 app.use(express.json());
-
+app.use(cookieParser())
 
 //Routes
 app.use('/api/user', userRouter)
