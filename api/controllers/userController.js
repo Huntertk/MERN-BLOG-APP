@@ -7,7 +7,6 @@ export const text = (req, res) => {
 }
 
 export const updateUser = async(req, res, next) => {
-  console.log(req.user);  
     if(req.user.id !== req.params.userId){
         return next(new AppError(401, "Unauthorized"))
     }
