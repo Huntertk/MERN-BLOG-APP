@@ -7,6 +7,7 @@ export const text = (req, res) => {
 }
 
 export const updateUser = async(req, res, next) => {
+
     if(req.user.id !== req.params.userId){
         return next(new AppError(401, "Unauthorized"))
     }
@@ -48,3 +49,15 @@ export const updateUser = async(req, res, next) => {
     }
 
 } 
+
+export const deleteUser = async (req, res, next) => {
+    if(req.user.id !== req.params.userId){
+        return next(new AppError(401, "You are not allowed to perform this action"))
+    }
+    try {
+        await User.findByIdAndDelete(req.params.userId)
+        res.status(200).json({message:'User has been deleted'})
+    } catch (error) {
+        next(error)
+    }
+}
