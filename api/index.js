@@ -4,6 +4,7 @@ import 'dotenv/config';
 import userRouter from './routes/userRoute.js'
 import authRouter from './routes/authRoute.js'
 import cookieParser from 'cookie-parser';
+import postRouter from './routes/postRoute.js'
 
 mongoose.connect(process.env.MONGO)
     .then(() => console.log('db is connected to application'))
@@ -19,6 +20,7 @@ app.use(cookieParser())
 //Routes
 app.use('/api/user', userRouter)
 app.use('/api/auth', authRouter)
+app.use('/api/post', postRouter)
 
 
 //global error handler
